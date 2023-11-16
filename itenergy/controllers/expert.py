@@ -1,11 +1,11 @@
 from fastapi import APIRouter
 
 router = APIRouter(
-    prefix='/expert',
+    prefix='/expert/forecast_switch',
     tags=['Expert']
 )
 
 
-@router.get('/{id}')
-def get_user_by_id() -> None:
+@router.patch('/{id}')
+def update_forecast() -> None:
     return

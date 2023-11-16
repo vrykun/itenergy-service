@@ -1,7 +1,9 @@
+alembic==1.11.1
 fastapi==0.104.1
 flake8==6.1.0
 isort==5.12.0
 mypy==1.4.1
 pydantic==1.10.13
 yamllint==1.32.0
+SQLAlchemy==2.0.21
 uvicorn==0.23.2
