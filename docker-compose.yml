@@ -1,14 +1,14 @@
 ---
 services:
-  itenergy-domain-service:
+  itenergy-service:
     build: .
     container_name: itenergy
     volumes:
       - ${PWD}:/app
     command: ["uvicorn", "itenergy.app:app", "--host", "0.0.0.0", "--port", "8000"]
 
-  itenergy-domain-service-postgres:
-    container_name: itenergy-domain-service-postgres
+  itenergy-service-postgres:
+    container_name: itenergy-service-postgres
     image: postgres:14.2
     environment:
       POSTGRES_DB: itenergy
