@@ -7,3 +7,5 @@ COPY ./requirements.txt /itenergy/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /itenergy/requirements.txt
 
 COPY itenergy /itenergy/app
+
+ENV PYTHONPATH=/app/

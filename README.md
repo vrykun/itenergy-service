@@ -8,4 +8,4 @@
 
 # Linting
 
-    docker compose run --no-deps --rm itenergy-service-test sh -c 'flake8 && isort --check --diff . && mypy && yamllint .'
+    flake8 && isort --check --diff . && mypy && yamllint .

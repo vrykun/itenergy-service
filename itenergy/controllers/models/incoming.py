@@ -2,12 +2,12 @@ from pydantic import BaseModel
 
 
 class Forecast(BaseModel):
-    forecast_id: str
-    v1_state: str
-    v2_state: str
-    v3_state: str
-    v4_state: str
-    v5_state: str
-    v6_state: str
-    v7_state: str
+    forecast_id: int
+    v1_state: int
+    v2_state: int
+    v3_state: int
+    v4_state: int
+    v5_state: int
+    v6_state: int
+    v7_state: int
     user_id: int
