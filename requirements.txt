@@ -8,5 +8,5 @@ pytest==7.4.0
 pytest-cov==4.1.0
 psycopg2==2.9.6
 yamllint==1.32.0
-SQLAlchemy==2.0.21
+SQLAlchemy[mypy]==2.0.23
 uvicorn==0.23.2
