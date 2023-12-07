@@ -32,7 +32,7 @@ def post_forecast(request: Forecast) -> ForecastSwitch:
 
 
 @router.get('/', response_model=list[ForecastSwitch], status_code=status.HTTP_200_OK)
-def get_all_forecast() -> list[ForecastSwitch]:
+def get_all_forecasts() -> list[ForecastSwitch]:
     with engine.begin() as conn:
         forecast_switch = forecasts.get_forecasts(conn=conn)
 

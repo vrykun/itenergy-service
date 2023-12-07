@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class Forecast(BaseModel):  # type: ignore
+class Forecast(BaseModel):
     forecast_id: int
     v1_state: int
     v2_state: int
