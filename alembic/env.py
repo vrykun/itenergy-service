@@ -5,7 +5,8 @@ from alembic import context
 from sqlalchemy import create_engine
 
 from itenergy.db.engine import metadata
-from itenergy.db.schema import forecast_switch  # noqa: F401
+from itenergy.db.schema import equipment_data  # noqa: F401
+from itenergy.db.schema import indicator_data  # noqa: F401
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

@@ -3,50 +3,47 @@ from dataclasses import dataclass
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.engine import Connection
 
-from itenergy.db.schema import forecast_switch
+from itenergy.db.schema import equipment_data
 
 
 @dataclass
-class ForecastSwitch:
-    forecast_id: int
-    v1_state: int
-    v2_state: int
-    v3_state: int
-    v4_state: int
-    v5_state: int
-    v6_state: int
-    v7_state: int
-    user_id: int
+class EquipmentData:
+    id: int
+    current_solar_power: int
+    current_wind_power: int
+    capacity: int
+    solar_battery_power: int
+    wind_power: int
+    power_consumption: int
 
 
-def new(forecast_id: int, v1_state: int, v2_state: int, v3_state: int, v4_state: int, v5_state: int,
-        v6_state: int, v7_state: int, user_id: int, conn: Connection) -> ForecastSwitch:
-    stmt = insert(forecast_switch).values(
-        forecast_id=forecast_id,
-        v1_state=v1_state,
-        v2_state=v2_state,
-        v3_state=v3_state,
-        v4_state=v4_state,
-        v5_state=v5_state,
-        v6_state=v6_state,
-        v7_state=v7_state,
-        user_id=user_id
-    ).returning(forecast_switch)
-    return ForecastSwitch(**conn.execute(stmt).mappings().one())
+def new(id: int, current_solar_power: int, current_wind_power: int, capacity: int,
+        solar_battery_power: int, wind_power: int, power_consumption: int, conn: Connection
+        ) -> EquipmentData:
+    stmt = insert(equipment_data).values(
+        id=id,
+        current_solar_power=current_solar_power,
+        current_wind_power=current_wind_power,
+        capacity=capacity,
+        solar_battery_power=solar_battery_power,
+        wind_power=wind_power,
+        power_consumption=power_consumption,
+    ).returning(equipment_data)
+    return EquipmentData(**conn.execute(stmt).mappings().one())
 
 
-def get_forecasts(conn: Connection) -> list[ForecastSwitch]:
-    forecasts = conn.execute(forecast_switch.select()).mappings().fetchall()
+def get_forecasts(conn: Connection) -> list[EquipmentData]:
+    forecasts = conn.execute(equipment_data.select()).mappings().fetchall()
 
-    return [ForecastSwitch(**forecast) for forecast in forecasts]
-
-
-def get_forecast(forecast_id: int, conn: Connection) -> ForecastSwitch:
-    forecast = conn.execute(forecast_switch.select().where(
-        forecast_switch.c.forecast_id == forecast_id)).mappings().one()
-
-    return ForecastSwitch(**forecast)
+    return [EquipmentData(**forecast) for forecast in forecasts]
 
 
-def delete(forecast_id: int, conn: Connection) -> None:
-    conn.execute(forecast_switch.delete().where(forecast_switch.c.forecast_id == forecast_id))
+def get_forecast(id: int, conn: Connection) -> EquipmentData:
+    forecast = conn.execute(equipment_data.select().where(
+        equipment_data.c.id == id)).mappings().one()
+
+    return EquipmentData(**forecast)
+
+
+def delete(id: int, conn: Connection) -> None:
+    conn.execute(equipment_data.delete().where(equipment_data.c.id == id))

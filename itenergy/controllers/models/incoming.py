@@ -2,12 +2,10 @@ from pydantic import BaseModel
 
 
 class Forecast(BaseModel):
-    forecast_id: int
-    v1_state: int
-    v2_state: int
-    v3_state: int
-    v4_state: int
-    v5_state: int
-    v6_state: int
-    v7_state: int
-    user_id: int
+    id: int
+    current_solar_power: int
+    current_wind_power: int
+    capacity: int
+    solar_battery_power: int
+    wind_power: int
+    power_consumption: int
