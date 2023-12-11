@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 
 
-def test_add_weather_forecast(test_client: TestClient) -> None:
+def test_add_equipment(test_client: TestClient) -> None:
     with test_client:
         create_weather_forecast = test_client.post(
             url='/expert/forecast_switch',
