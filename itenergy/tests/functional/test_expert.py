@@ -20,7 +20,7 @@ def test_equipment(test_client: TestClient) -> None:
         current_solar_power=random.uniform(1, 200),
         current_wind_power=random.uniform(1, 200),
         capacity=random.uniform(1, 200),
-        solar_battery_power=random.uniform(1,200),
+        solar_battery_power=random.uniform(1, 200),
         wind_power=random.uniform(1, 200),
         power_consumption=random.uniform(1, 200))
 
