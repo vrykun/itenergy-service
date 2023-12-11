@@ -1,6 +1,4 @@
-from decimal import Decimal
-
-from pydantic import BaseModel, condecimal
+from pydantic import BaseModel
 
 
 class EquipmentRequest(BaseModel):

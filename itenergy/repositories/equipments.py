@@ -18,7 +18,7 @@ class Equipment:
     interphase_voltage_ubc: float | None = None
     asymmetry_coefficient_k2u: float | None = None
     asymmetry_coefficient_k0u: float | None = None
-    capacity_battery_pb: float | None = None, 
+    capacity_battery_pb: float | None = None
     current_solar_power: float | None = None
     current_wind_power: float | None = None
     capacity: float | None = None
@@ -28,22 +28,22 @@ class Equipment:
 
 
 def new(id: int,
-        voltage_deviation: float,
-        phase_voltage_ua: float,
-        phase_voltage_ub: float,
-        phase_voltage_uc: float,
-        interphase_voltage_uab: float,
-        interphase_voltage_uac: float,
-        interphase_voltage_ubc: float,
-        asymmetry_coefficient_k2u: float,
-        asymmetry_coefficient_k0u: float,
-        capacity_battery_pb: float,
-        current_solar_power: float,
-        current_wind_power: float,
-        capacity: float,
-        solar_battery_power: float,
-        wind_power: float,
-        power_consumption: float,
+        voltage_deviation: float | None,
+        phase_voltage_ua: float | None,
+        phase_voltage_ub: float | None,
+        phase_voltage_uc: float | None,
+        interphase_voltage_uab: float | None,
+        interphase_voltage_uac: float | None,
+        interphase_voltage_ubc: float | None,
+        asymmetry_coefficient_k2u: float | None,
+        asymmetry_coefficient_k0u: float | None,
+        capacity_battery_pb: float | None,
+        current_solar_power: float | None,
+        current_wind_power: float | None,
+        capacity: float | None,
+        solar_battery_power: float | None,
+        wind_power: float | None,
+        power_consumption: float | None,
         conn: Connection
         ) -> Equipment:
     set_fields = dict(

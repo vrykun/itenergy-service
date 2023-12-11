@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Table, Numeric, FLOAT
+from sqlalchemy import FLOAT, Column, Integer, Table
 
 from itenergy.db.engine import metadata
 
