@@ -1,19 +1,38 @@
+import random
+
 from fastapi.testclient import TestClient
 
 
-def test_add_equipment(test_client: TestClient) -> None:
-    with test_client:
-        create_weather_forecast = test_client.post(
-            url='/expert/forecast_switch',
-            json=dict(
-                forecast_id=7,
-                v1_state=1,
-                v2_state=1,
-                v3_state=1,
-                v4_state=1,
-                v5_state=0,
-                v6_state=0,
-                v7_state=1,
-                user_id=2))
+def test_equipment(test_client: TestClient) -> None:
+    equipment_id = random.randint(0, 9)
+    equipment_body = dict(
+        id=equipment_id,
+        voltage_deviation=random.uniform(1, 200),
+        phase_voltage_ua=random.uniform(1, 200),
+        phase_voltage_ub=random.uniform(1, 200),
+        phase_voltage_uc=random.uniform(1, 200),
+        interphase_voltage_uab=random.uniform(1, 200),
+        interphase_voltage_uac=random.uniform(1, 200),
+        interphase_voltage_ubc=random.uniform(1, 200),
+        asymmetry_coefficient_k2u=random.uniform(1, 200),
+        asymmetry_coefficient_k0u=random.uniform(1, 200),
+        capacity_battery_pb=random.uniform(1, 200),
+        current_solar_power=random.uniform(1, 200),
+        current_wind_power=random.uniform(1, 200),
+        capacity=random.uniform(1, 200),
+        solar_battery_power=random.uniform(1,200),
+        wind_power=random.uniform(1, 200),
+        power_consumption=random.uniform(1, 200))
 
-        assert create_weather_forecast.status_code == 201
+    with test_client:
+        # test POST
+        create_equipment = test_client.post(
+            url='/expert/equipment/',
+            json=equipment_body)
+
+        assert create_equipment.status_code == 201
+
+        # test DELETE
+        create_equipment = test_client.delete(url=f'/expert/equipment/{equipment_id}')
+
+        assert create_equipment.status_code == 204

@@ -18,3 +18,5 @@ services:
       POSTGRES_DB: itenergy
       POSTGRES_USER: itenergy
       POSTGRES_PASSWORD: password
+    ports:
+      - 5433:5432
