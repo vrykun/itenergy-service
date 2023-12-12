@@ -32,6 +32,26 @@ def test_equipment(test_client: TestClient) -> None:
 
         assert create_equipment.status_code == 201
 
+        # test PATCH
+        equipment_body['wind_power'] = 15.7
+        create_equipment = test_client.patch(
+            url='/expert/equipment/',
+            json=equipment_body)
+
+        assert create_equipment.status_code == 200
+
+        # test GET List
+        create_equipment = test_client.get(
+            url='/expert/equipment/')
+
+        assert create_equipment.status_code == 200
+
+        # test GET equipment
+        create_equipment = test_client.get(
+            url=f'/expert/equipment/{equipment_id}')
+
+        assert create_equipment.status_code == 200
+
         # test DELETE
         create_equipment = test_client.delete(url=f'/expert/equipment/{equipment_id}')
 
