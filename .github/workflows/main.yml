@@ -8,6 +8,28 @@ jobs:
     name: build
     runs-on: ubuntu-latest
 
+    services:
+      itenergy-service:
+        build: .
+        container_name: itenergy
+        depends_on:
+          - itenergy-service-postgres
+        volumes:
+          - ${PWD}:/app
+        command: [ "uvicorn", "itenergy.app:app", "--host", "0.0.0.0", "--port", "8000" ]
+
+      itenergy-service-postgres:
+        container_name: itenergy-service-postgres
+        image: postgres:14.2
+        environment:
+          PGHOST: itenergy-service-postgres
+          PGPORT: 5432
+          POSTGRES_DB: itenergy
+          POSTGRES_USER: itenergy
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5433:5432
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,7 +45,7 @@ jobs:
 
       - name: Set env
         run: | 
-          echo "PGHOST=localhost" >> $GITHUB_ENV
+          echo "PGHOST=itenergy-service-postgres" >> $GITHUB_ENV
           echo "PGPORT=5433" >> $GITHUB_ENV
       - name: Test
         run: |

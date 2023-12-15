@@ -8,7 +8,6 @@ from itenergy.db.schema import equipment_data
 
 @dataclass
 class Equipment:
-    id: int
     voltage_deviation: float | None = None
     phase_voltage_ua: float | None = None
     phase_voltage_ub: float | None = None
