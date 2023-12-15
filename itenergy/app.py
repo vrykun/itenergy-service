@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from itenergy.controllers import expert
-from itenergy.controllers import rule_base
+from itenergy.controllers import expert, rule_base
 
 app = FastAPI(title='IT Energy service', version='0.0.1')
 app.include_router(expert.router)

@@ -9,20 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      itenergy-service:
-        build: .
-        container_name: itenergy
-        depends_on:
-          - itenergy-service-postgres
-        volumes:
-          - ${PWD}:/app
-        command: [ "uvicorn", "itenergy.app:app", "--host", "0.0.0.0", "--port", "8000" ]
-
-      itenergy-service-postgres:
-        container_name: itenergy-service-postgres
+      postgres:
         image: postgres:14.2
-        environment:
-          PGHOST: itenergy-service-postgres
+        env:
+          PGHOST: localhost
           PGPORT: 5432
           POSTGRES_DB: itenergy
           POSTGRES_USER: itenergy
@@ -44,13 +34,9 @@ jobs:
           flake8 && isort --check --diff . && mypy
 
       - name: Set env
-        run: | 
-          echo "PGHOST=itenergy-service-postgres" >> $GITHUB_ENV
-          echo "PGPORT=5433" >> $GITHUB_ENV
-      - name: Test
         run: |
-          echo $PGHOST
-          echo $PGPORT
+          echo "PGHOST=localhost" >> $GITHUB_ENV
+          echo "PGPORT=5433" >> $GITHUB_ENV
 
       - name: Test with pytest
         run: |

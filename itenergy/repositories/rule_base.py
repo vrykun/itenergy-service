@@ -14,7 +14,7 @@ class RuleBase:
     switch: Any
 
 
-def new(id: int, input: Any, switch: Any, conn) -> RuleBase:
+def new(id: int, input: Any, switch: Any, conn: Connection) -> RuleBase:
     set_fields = dict(id=id, input=input, switch=switch)
     stmt = (insert(indicator_data).values(
         set_fields,
